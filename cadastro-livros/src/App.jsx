@@ -7,6 +7,8 @@ function App() {
   const [autor, setAutor] = useState("");
   const [categoria, setCategoria] = useState("");
   const [anoPublicacao, setAnoPublicacao] = useState("");
+  const [livros, setLivros] = useState([]);
+  const [erros, setErros] = useState({});
 
   function handleSubmit(event) {
     event.preventDefault();
