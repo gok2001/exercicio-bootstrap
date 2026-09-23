@@ -36,6 +36,7 @@ export default function FormLivro({
                 value={categoria}
                 onChange={(event) => setCategoria(event.target.value)}
             >
+                <option value="" disabled>Selecione uma opção</option>
                 <option value="romance">Romance</option>
                 <option value="tecnico">Técnico</option>
                 <option value="infantil">Infantil</option>
