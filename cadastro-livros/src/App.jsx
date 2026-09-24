@@ -78,7 +78,33 @@ function App() {
         handleSubmit={handleSubmit}
         erros={erros}
       />
+
+      <h2>Livros Cadastrados</h2>
+
+      <div className="table-responsive">
+        <table className="table table-striped align-middle">
+
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Autor</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {livros.map((livro, index) => (
+                <tr key={index}>
+                  <td>{livro.titulo}</td>
+                  <td>{livro.autor}</td>
+                </tr>
+              ))}
+            </tbody>
+
+        </table>
+      </div>
+
     </div>
+
   );
 }
 
