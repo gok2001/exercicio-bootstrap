@@ -7,7 +7,8 @@ export default function FormLivro({
     setCategoria,
     anoPublicacao,
     setAnoPublicacao,
-    handleSubmit
+    handleSubmit,
+    erros
 }) {
     return (
         <form className="form-livro" onSubmit={handleSubmit}>

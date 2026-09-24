@@ -13,10 +13,55 @@ function App() {
   function handleSubmit(event) {
     event.preventDefault();
 
+    const erros = validar();
+
+    if (Object.keys(erros).length > 0) {
+      return;
+    }
+
+    setLivros([
+      ...livros, 
+      {
+        "titulo": titulo,
+        "autor": autor,
+        "categoria": categoria,
+        "anoPublicacao": anoPublicacao
+      }
+    ]);
+
     setTitulo("");
     setAutor("");
     setCategoria("");
     setAnoPublicacao("");
+  }
+
+  function validar() {
+    const erros = {};
+    const dataAtual = new Date();
+
+    if (titulo.length < 3) {
+      erros.titulo = "Título deve ter pelo menos 3 caracteres";
+    }
+
+    if (autor.length < 3) {
+      erros.autor = "Autor deve ter pelo menos 3 caracteres";
+    }
+
+    if (!categoria) {
+      erros.categoria = "É preciso escolher uma categoria";
+    }
+
+    if (!anoPublicacao) {
+      erros.anoPublicacao = "Ano não pode ser vazio";
+    } else if (anoPublicacao <= 1900) {
+      erros.anoPublicacao = "Ano deve ser maior que 1900";
+    } else if (anoPublicacao > dataAtual.getFullYear()) {
+      erros.anoPublicacao = "Ano não pode ser maior que o ano atual";
+    }
+
+    setErros(erros);
+
+    return erros;
   }
 
   return (
@@ -31,9 +76,10 @@ function App() {
         anoPublicacao={anoPublicacao}
         setAnoPublicacao={setAnoPublicacao}
         handleSubmit={handleSubmit}
+        erros={erros}
       />
     </div>
   );
 }
 
-export default App
+export default App;
