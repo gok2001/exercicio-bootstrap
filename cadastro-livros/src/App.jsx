@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import FormLivro from './components/FormLivro';
-import './App.css';
 
 function App() {
   const [titulo, setTitulo] = useState("");
@@ -9,6 +8,7 @@ function App() {
   const [anoPublicacao, setAnoPublicacao] = useState("");
   const [livros, setLivros] = useState([]);
   const [erros, setErros] = useState({});
+  const [abaAtiva, setAbaAtiva] = useState("cadastro");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -66,45 +66,103 @@ function App() {
 
   return (
     <div>
-      <FormLivro
-        titulo={titulo}
-        setTitulo={setTitulo}
-        autor={autor}
-        setAutor={setAutor}
-        categoria={categoria}
-        setCategoria={setCategoria}
-        anoPublicacao={anoPublicacao}
-        setAnoPublicacao={setAnoPublicacao}
-        handleSubmit={handleSubmit}
-        erros={erros}
-      />
 
-      <h2>Livros Cadastrados</h2>
+      <nav>
+        <div className="nav nav-tabs">
+          <button
+            className={`nav-link ${abaAtiva === "cadastro" ? "active" : ""}`}
+            onClick={() => setAbaAtiva("cadastro")}
+          >
+            Cadastro
+          </button>
+          
+          <button
+            className={`nav-link ${abaAtiva === "acervo" ? "active" : ""}`}
+            onClick={() => setAbaAtiva("acervo")}
+          >
+            Acervo
+          </button>
+        </div>
+      </nav>
 
-      <div className="table-responsive">
-        <table className="table table-striped align-middle">
+      {abaAtiva === "cadastro" && (
+        <div>
 
-            <thead>
-              <tr>
-                <th>Título</th>
-                <th>Autor</th>
-              </tr>
-            </thead>
+          <FormLivro
+            titulo={titulo}
+            setTitulo={setTitulo}
+            autor={autor}
+            setAutor={setAutor}
+            categoria={categoria}
+            setCategoria={setCategoria}
+            anoPublicacao={anoPublicacao}
+            setAnoPublicacao={setAnoPublicacao}
+            handleSubmit={handleSubmit}
+            erros={erros}
+          />
 
-            <tbody>
-              {livros.map((livro, index) => (
-                <tr key={index}>
-                  <td>{livro.titulo}</td>
-                  <td>{livro.autor}</td>
-                </tr>
-              ))}
-            </tbody>
+          <h2>Livros Cadastrados</h2>
 
-        </table>
-      </div>
+          <div className="table-responsive">
+            <table className="table table-striped align-middle">
+
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {livros.map((livro, index) => (
+                    <tr key={index}>
+                      <td>{livro.titulo}</td>
+                      <td>{livro.autor}</td>
+                    </tr>
+                  ))}
+                </tbody>
+  
+            </table>
+          </div>
+
+        </div>
+      )}
+
+      {abaAtiva === "acervo" && (
+        <div>
+
+          <h2>Acervo de Livros</h2>
+
+          <div className="table-responsive">
+            <table className="table table-striped align-middle">
+
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Categoria</th>
+                    <th>Ano de publicação</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {livros.map((livro, index) => (
+                    <tr key={index}>
+                      <td>{livro.titulo}</td>
+                      <td>{livro.autor}</td>
+                      <td>{livro.categoria}</td>
+                      <td>{livro.anoPublicacao}</td>
+                    </tr>
+                  ))}
+                </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      )}
 
     </div>
-
   );
 }
 
