@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import FormLivro from './components/FormLivro';
+import NavBar from './components/NavBar';
 
 function App() {
   const [titulo, setTitulo] = useState("");
@@ -67,23 +68,10 @@ function App() {
   return (
     <div>
 
-      <nav>
-        <div className="nav nav-tabs">
-          <button
-            className={`nav-link ${abaAtiva === "cadastro" ? "active" : ""}`}
-            onClick={() => setAbaAtiva("cadastro")}
-          >
-            Cadastro
-          </button>
-          
-          <button
-            className={`nav-link ${abaAtiva === "acervo" ? "active" : ""}`}
-            onClick={() => setAbaAtiva("acervo")}
-          >
-            Acervo
-          </button>
-        </div>
-      </nav>
+      <NavBar
+        abaAtiva={abaAtiva}
+        setAbaAtiva={setAbaAtiva}
+      />
 
       {abaAtiva === "cadastro" && (
         <div>
