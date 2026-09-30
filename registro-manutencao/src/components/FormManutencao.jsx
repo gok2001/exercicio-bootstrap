@@ -60,6 +60,8 @@ export default function FormManutencao({
                     >
                     </textarea>
                 </div>
+
+                <button type="submit">Cadastrar Manutenção</button>
             </div>
         </form>
     );
