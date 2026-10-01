@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import FormManutencao from './components/FormManutencao';
 import NavBar from './components/NavBar'
+import TabelaManutencoes from './components/TabelaManutencoes';
 
 function App() {
   const [equipamento, setEquipamento] = useState("");
@@ -57,6 +58,16 @@ function App() {
   
             </table>
           </div>
+
+        </div>
+      )}
+
+      {abaAtiva === "historico" && (
+        <div>
+
+          <h2>Histórico de manutenções</h2>
+
+          <TabelaManutencoes manutencoes={manutencoes} />
 
         </div>
       )}
