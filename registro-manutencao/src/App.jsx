@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import FormManutencao from './components/FormManutencao';
-import NavBar from '../../cadastro-livros/src/components/NavBar';
+import NavBar from './components/NavBar'
 
 function App() {
   const [equipamento, setEquipamento] = useState("");

@@ -6,7 +6,8 @@ export default function FormManutencao({
     responsavelTecnico,
     setResponsavelTecnico,
     descricao,
-    setDescricao
+    setDescricao,
+    erros
 }) {
     return (
         <form className="form-manutencao">
@@ -19,6 +20,7 @@ export default function FormManutencao({
                         name="equipamento"
                         value={equipamento}
                         onChange={(event) => setEquipamento(event.target.value)}
+                        className={erros.equipamento ? "form-control is-invalid" : "form-control"}
                     />
                 </div>
 
@@ -30,6 +32,7 @@ export default function FormManutencao({
                         name="tipo-manutencao"
                         value={tipoManutencao}
                         onChange={(event) => setTipoManutencao(event.target.value)}
+                        className={erros.tipoManutencao ? "form-control is-invalid" : "form-control"}
                     >
                         <option value="" disabled>Selecione uma opção</option>
                         <option value="preventiva">Preventiva</option>
@@ -46,6 +49,7 @@ export default function FormManutencao({
                         name="responsavel-tecnico"
                         value={responsavelTecnico}
                         onChange={(event) => setResponsavelTecnico(event.target.value)}
+                        className={erros.responsavelTecnico ? "form-control is-invalid" : "form-control"}
                     />
                 </div>
 
@@ -57,6 +61,7 @@ export default function FormManutencao({
                         name="descricao"
                         value={descricao}
                         onChange={(event) => setDescricao(event.target.value)}
+                        className={erros.descricao ? "form-control is-invalid" : "form-control"}
                     >
                     </textarea>
                 </div>
