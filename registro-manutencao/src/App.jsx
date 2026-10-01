@@ -101,7 +101,17 @@ function App() {
                   {manutencoes.map((manutencao, index) => (
                     <tr key={index}>
                       <td>{manutencao.equipamento}</td>
-                      <td>{manutencao.tipoManutencao}</td>
+                      <span 
+                        className={
+                          manutencao.tipoManutencao === "preventiva"
+                          ? "badge bg-success"
+                          : manutencao.tipoManutencao === "corretiva"
+                          ? "badge bg-danger"
+                          : "badge bg-primary"
+                        }
+                      >
+                        <td>{manutencao.tipoManutencao}</td>
+                      </span>
                     </tr>
                   ))}
                 </tbody>
