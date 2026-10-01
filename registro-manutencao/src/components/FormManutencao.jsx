@@ -3,8 +3,8 @@ export default function FormManutencao({
     setEquipamento,
     tipoManutencao,
     setTipoManutencao,
-    responsavelTecnico,
-    setResponsavelTecnico,
+    tecnicoResponsavel,
+    setTecnicoResponsavel,
     descricao,
     setDescricao,
     handleSubmit,
@@ -13,6 +13,7 @@ export default function FormManutencao({
     return (
         <form className="form-manutencao" onSubmit={handleSubmit}>
             <div className="row">
+
                 <div className="col-md-6">
                     <label htmlFor="equipamento">Equipamento</label>
                     <input
@@ -49,17 +50,17 @@ export default function FormManutencao({
                 </div>
 
                 <div className="col-md-6">
-                    <label htmlFor="responsavel-tecnico">Responsável técnico</label>
+                    <label htmlFor="tecnico-responsavel">Responsável técnico</label>
                     <input
-                        id="responsavel-tecnico"
+                        id="tecnico-responsavel"
                         type="text"
-                        name="responsavel-tecnico"
-                        value={responsavelTecnico}
-                        onChange={(event) => setResponsavelTecnico(event.target.value)}
-                        className={erros.responsavelTecnico ? "form-control is-invalid" : "form-control"}
+                        name="tecnico-responsavel"
+                        value={tecnicoResponsavel}
+                        onChange={(event) => setTecnicoResponsavel(event.target.value)}
+                        className={erros.tecnicoResponsavel ? "form-control is-invalid" : "form-control"}
                     />
                     <div className="invalid-feedback">
-                        {erros.responsavelTecnico}
+                        {erros.tecnicoResponsavel}
                     </div>
                 </div>
 
@@ -79,8 +80,9 @@ export default function FormManutencao({
                     </div>
                 </div>
 
-                <button type="submit">Cadastrar Manutenção</button>
             </div>
+            
+            <button type="submit">Cadastrar Manutenção</button>
         </form>
     );
 }

@@ -6,11 +6,60 @@ import TabelaManutencoes from './components/TabelaManutencoes';
 function App() {
   const [equipamento, setEquipamento] = useState("");
   const [tipoManutencao, setTipoManutencao] = useState("");
-  const [responsavelTecnico, setResponsavelTecnico] = useState("");
+  const [tecnicoResponsavel, setTecnicoResponsavel] = useState("");
   const [descricao, setDescricao] = useState("");
   const [manutencoes, setManutencoes] = useState([]);
   const [erros, setErros] = useState({});
   const [abaAtiva, setAbaAtiva] = useState("registro");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const erros = validar();
+
+    if (Object.keys(erros).length > 0) {
+      return;
+    }
+
+    setManutencoes([
+      ...manutencoes, 
+      {
+        "equipamento": equipamento,
+        "tipoManutencao": tipoManutencao,
+        "tecnicoResponsavel": tecnicoResponsavel,
+        "descricao": descricao
+      }
+    ]);
+
+    setEquipamento("");
+    setTipoManutencao("");
+    setTecnicoResponsavel("");
+    setDescricao("");
+  }
+
+  function validar() {
+    const erros = {};
+
+    if (equipamento.length < 3) {
+      erros.equipamento = "Equipamento deve ter pelo menos 3 caracteres";
+    }
+
+    if (!tipoManutencao) {
+      erros.tipoManutencao = "É preciso escolher um tipo de manutenção";
+    }
+
+    if (tecnicoResponsavel.length < 3) {
+      erros.tecnicoResponsavel = "Responsável técnico deve ter pelo menos 3 caracteres";
+    }
+
+    if (descricao.length < 10) {
+      erros.descricao = "Descrição deve ter pelo menos 10 caracteres";
+    }
+
+    setErros(erros);
+
+    return erros;
+  }
 
   return (
     <div>
@@ -28,10 +77,11 @@ function App() {
           setEquipamento={setEquipamento}
           tipoManutencao={tipoManutencao}
           setTipoManutencao={setTipoManutencao}
-          responsavelTecnico={responsavelTecnico}
-          setResponsavelTecnico={setResponsavelTecnico}
+          tecnicoResponsavel={tecnicoResponsavel}
+          setTecnicoResponsavel={setTecnicoResponsavel}
           descricao={descricao}
           setDescricao={setDescricao}
+          handleSubmit={handleSubmit}
           erros={erros}
           />
 
