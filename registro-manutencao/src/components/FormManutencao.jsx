@@ -7,10 +7,11 @@ export default function FormManutencao({
     setResponsavelTecnico,
     descricao,
     setDescricao,
+    handleSubmit,
     erros
 }) {
     return (
-        <form className="form-manutencao">
+        <form className="form-manutencao" onSubmit={handleSubmit}>
             <div className="row">
                 <div className="col-md-6">
                     <label htmlFor="equipamento">Equipamento</label>
@@ -22,6 +23,9 @@ export default function FormManutencao({
                         onChange={(event) => setEquipamento(event.target.value)}
                         className={erros.equipamento ? "form-control is-invalid" : "form-control"}
                     />
+                    <div className="invalid-feedback">
+                        {erros.equipamento}
+                    </div>
                 </div>
 
                 <div className="col-md-6">
@@ -39,6 +43,9 @@ export default function FormManutencao({
                         <option value="corretiva">Corretiva</option>
                         <option value="preditiva">Preditiva</option>
                     </select>
+                    <div className="invalid-feedback">
+                        {erros.tipoManutencao}
+                    </div>
                 </div>
 
                 <div className="col-md-6">
@@ -51,6 +58,9 @@ export default function FormManutencao({
                         onChange={(event) => setResponsavelTecnico(event.target.value)}
                         className={erros.responsavelTecnico ? "form-control is-invalid" : "form-control"}
                     />
+                    <div className="invalid-feedback">
+                        {erros.responsavelTecnico}
+                    </div>
                 </div>
 
                 <div className="col-md-6">
@@ -64,6 +74,9 @@ export default function FormManutencao({
                         className={erros.descricao ? "form-control is-invalid" : "form-control"}
                     >
                     </textarea>
+                    <div className="invalid-feedback">
+                        {erros.descricao}
+                    </div>
                 </div>
 
                 <button type="submit">Cadastrar Manutenção</button>

@@ -7,6 +7,7 @@ function App() {
   const [tipoManutencao, setTipoManutencao] = useState("");
   const [responsavelTecnico, setResponsavelTecnico] = useState("");
   const [descricao, setDescricao] = useState("");
+  const [erros, setErros] = useState({});
   const [abaAtiva, setAbaAtiva] = useState("registro");
 
   return (
@@ -29,6 +30,7 @@ function App() {
           setResponsavelTecnico={setResponsavelTecnico}
           descricao={descricao}
           setDescricao={setDescricao}
+          erros={erros}
           />
 
         </div>
